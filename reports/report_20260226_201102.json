@@ -1,0 +1,431 @@
+{
+  "timestamp": "2026-02-26T20:11:02.296180",
+  "job_description": "JOB TITLE: Senior Hiring Manager \u2013 Technology Division\r\nCOMPANY: NovaTech Solutions Pvt. Ltd.\r\nLOCATION: Bangalore, India (Hybrid)\r\nEXPERIENCE REQUIRED: 6\u201310 years\r\nEMPLOYMENT TYPE: Full-Time\r\n\r\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\nABOUT THE COMPANY\r\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\nNovaTech Solutions is a fast-growing technology company with 3,000+ employees across\r\n12 countries. We build enterprise SaaS products used by Fortune 500 companies. Our\r\nPeople & Talent team i",
+  "profile": "balanced",
+  "results": [
+    {
+      "tfidf_similarity": 0.3324734423501862,
+      "keyword_match": 1.0,
+      "matched_keywords": [
+        "acceptance",
+        "acquisition",
+        "agency",
+        "analytic",
+        "annual",
+        "annually",
+        "applicant",
+        "assessment",
+        "bachelor",
+        "bangalore",
+        "base",
+        "behavioral"
+      ],
+      "skill_overlap": 0.7416666666666667,
+      "skills_found": [
+        "java",
+        "leadership",
+        "python",
+        "stakeholder management",
+        "tableau"
+      ],
+      "skills_matched": [
+        "leadership",
+        "stakeholder management",
+        "tableau"
+      ],
+      "skills_missing": [
+        "power bi"
+      ],
+      "experience": 0.9,
+      "years_experience": 9.0,
+      "education": 0.84,
+      "education_label": "MBA",
+      "stuffing_multiplier": 1.0,
+      "required_boost": 1.08,
+      "required_penalty": 1.0,
+      "required_hit": [
+        "leadership",
+        "stakeholder management"
+      ],
+      "required_miss": [],
+      "preferred_hit": [
+        "tableau"
+      ],
+      "required_coverage": 100.0,
+      "word_count": 308,
+      "length_multiplier": 1.0,
+      "final_score": 78.22,
+      "grade": "A",
+      "label": "Excellent Match",
+      "filename": "resume_meera_krishnamurthy.txt",
+      "text_preview": "MEERA KRISHNAMURTHY\nSenior Hiring Manager | Talent Acquisition Leader\nEmail: meera.krishna@email.com | Phone: +91-9845123456\nLinkedIn: linkedin.com/in/meerakrishna | Location: Bangalore, India\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROFESSIONAL SUMMARY\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500...",
+      "tfidf_pct": 33.2,
+      "keyword_pct": 100.0,
+      "skill_pct": 74.2,
+      "experience_pct": 90.0,
+      "education_pct": 84.0,
+      "explanation": [
+        "\u274c Low semantic similarity to JD \u2014 TF-IDF score only 33.2%",
+        "\u2705 All 2 required skills present \u2014 full ATS compliance (+8% boost applied)",
+        "\u2b50 Bonus: has 1 preferred skill(s) \u2014 tableau",
+        "\u2705 Experience (9.0 yrs) is within the required range (6.0\u201310.0 yrs)",
+        "\ud83d\udfe0 Education (MBA) is below JD requirement (Master)",
+        "\u2139\ufe0f  Resume length is adequate (308 words)"
+      ],
+      "rank": 1
+    },
+    {
+      "tfidf_similarity": 0.2903368587250622,
+      "keyword_match": 1.0,
+      "matched_keywords": [
+        "acceptance",
+        "acquisition",
+        "agency",
+        "assessment",
+        "bachelor",
+        "bangalore",
+        "base",
+        "brand",
+        "branding",
+        "build",
+        "campaign",
+        "campus"
+      ],
+      "skill_overlap": 0.7416666666666667,
+      "skills_found": [
+        "java",
+        "leadership",
+        "power bi",
+        "stakeholder management"
+      ],
+      "skills_matched": [
+        "leadership",
+        "power bi",
+        "stakeholder management"
+      ],
+      "skills_missing": [
+        "tableau"
+      ],
+      "experience": 0.7,
+      "years_experience": 7.0,
+      "education": 0.84,
+      "education_label": "MBA",
+      "stuffing_multiplier": 1.0,
+      "required_boost": 1.08,
+      "required_penalty": 1.0,
+      "required_hit": [
+        "leadership",
+        "stakeholder management"
+      ],
+      "required_miss": [],
+      "preferred_hit": [
+        "power bi"
+      ],
+      "required_coverage": 100.0,
+      "word_count": 230,
+      "length_multiplier": 1.0,
+      "final_score": 74.26,
+      "grade": "B",
+      "label": "Good Match",
+      "filename": "resume_arjun_venkatesh.txt",
+      "text_preview": "ARJUN VENKATESH\nTalent Acquisition Manager\nEmail: arjun.venkatesh@gmail.com | Phone: +91-9876501234\nLinkedIn: linkedin.com/in/arjunvenkatesh | Location: Bangalore, India\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nSUMMARY\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nTalent Acquisition Manager wi...",
+      "tfidf_pct": 29.0,
+      "keyword_pct": 100.0,
+      "skill_pct": 74.2,
+      "experience_pct": 70.0,
+      "education_pct": 84.0,
+      "explanation": [
+        "\u274c Low semantic similarity to JD \u2014 TF-IDF score only 29.0%",
+        "\u2705 All 2 required skills present \u2014 full ATS compliance (+8% boost applied)",
+        "\u2b50 Bonus: has 1 preferred skill(s) \u2014 power bi",
+        "\u2705 Experience (7.0 yrs) is within the required range (6.0\u201310.0 yrs)",
+        "\ud83d\udfe0 Education (MBA) is below JD requirement (Master)",
+        "\u2139\ufe0f  Resume length is adequate (230 words)"
+      ],
+      "rank": 2
+    },
+    {
+      "tfidf_similarity": 0.1084377106130565,
+      "keyword_match": 1.0,
+      "matched_keywords": [
+        "annually",
+        "bachelor",
+        "base",
+        "business",
+        "certification",
+        "certify",
+        "competency",
+        "development",
+        "education",
+        "employee",
+        "end",
+        "experience"
+      ],
+      "skill_overlap": 0.3833333333333333,
+      "skills_found": [
+        "communication",
+        "excel",
+        "leadership",
+        "problem solving",
+        "stakeholder management"
+      ],
+      "skills_matched": [
+        "leadership",
+        "stakeholder management"
+      ],
+      "skills_missing": [
+        "power bi",
+        "tableau"
+      ],
+      "experience": 0.8,
+      "years_experience": 8.0,
+      "education": 0.86,
+      "education_label": "MS",
+      "stuffing_multiplier": 1.0,
+      "required_boost": 1.08,
+      "required_penalty": 1.0,
+      "required_hit": [
+        "leadership",
+        "stakeholder management"
+      ],
+      "required_miss": [],
+      "preferred_hit": [],
+      "required_coverage": 100.0,
+      "word_count": 181,
+      "length_multiplier": 1.0,
+      "final_score": 58.66,
+      "grade": "C",
+      "label": "Moderate Match",
+      "filename": "resume_rahul_mehrotra.txt",
+      "text_preview": "RAHUL MEHROTRA\nHR Manager | Generalist\nEmail: rahul.mehrotra@yahoo.com | Phone: +91-9988123456\nLocation: Mumbai, India\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROFILE\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nHR Manager with 8 years of experience in human resources across manufacturing an...",
+      "tfidf_pct": 10.8,
+      "keyword_pct": 100.0,
+      "skill_pct": 38.3,
+      "experience_pct": 80.0,
+      "education_pct": 86.0,
+      "explanation": [
+        "\u274c Low semantic similarity to JD \u2014 TF-IDF score only 10.8%",
+        "\u2705 All 2 required skills present \u2014 full ATS compliance (+8% boost applied)",
+        "\u2705 Experience (8.0 yrs) is within the required range (6.0\u201310.0 yrs)",
+        "\ud83d\udfe0 Education (MS) is below JD requirement (Master)",
+        "\u2139\ufe0f  Resume length is adequate (181 words)"
+      ],
+      "rank": 3
+    },
+    {
+      "tfidf_similarity": 0.22013342256971075,
+      "keyword_match": 1.0,
+      "matched_keywords": [
+        "acceptance",
+        "acquisition",
+        "agency",
+        "annually",
+        "assessment",
+        "bachelor",
+        "base",
+        "branding",
+        "build",
+        "business",
+        "campus",
+        "candidate"
+      ],
+      "skill_overlap": 0.19166666666666665,
+      "skills_found": [
+        "java",
+        "leadership",
+        "python"
+      ],
+      "skills_matched": [
+        "leadership"
+      ],
+      "skills_missing": [
+        "power bi",
+        "stakeholder management",
+        "tableau"
+      ],
+      "experience": 0.6,
+      "years_experience": 6.0,
+      "education": 0.87,
+      "education_label": "ME",
+      "stuffing_multiplier": 1.0,
+      "required_boost": 1.0,
+      "required_penalty": 0.92,
+      "required_hit": [
+        "leadership"
+      ],
+      "required_miss": [
+        "stakeholder management"
+      ],
+      "preferred_hit": [],
+      "required_coverage": 50.0,
+      "word_count": 213,
+      "length_multiplier": 1.0,
+      "final_score": 46.51,
+      "grade": "D",
+      "label": "Weak Match",
+      "filename": "resume_divya_subramaniam.txt",
+      "text_preview": "DIVYA SUBRAMANIAM\nHR Business Partner | Talent Acquisition\nEmail: divya.subra@outlook.com | Phone: +91-9712309876\nLocation: Chennai, India\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nABOUT ME\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nHR professional with 6 years of experience in talent acquis...",
+      "tfidf_pct": 22.0,
+      "keyword_pct": 100.0,
+      "skill_pct": 19.2,
+      "experience_pct": 60.0,
+      "education_pct": 87.0,
+      "explanation": [
+        "\u274c Low semantic similarity to JD \u2014 TF-IDF score only 22.0%",
+        "\ud83d\udfe0 Only 50.0% required skills matched \u2014 missing: stakeholder management (\u22128% penalty)",
+        "\u2705 Experience (6.0 yrs) is within the required range (6.0\u201310.0 yrs)",
+        "\ud83d\udfe0 Education (ME) is below JD requirement (Master)",
+        "\u2139\ufe0f  Resume length is adequate (213 words)"
+      ],
+      "rank": 4
+    },
+    {
+      "tfidf_similarity": 0.10235773149268358,
+      "keyword_match": 1.0,
+      "matched_keywords": [
+        "acquisition",
+        "administration",
+        "bachelor",
+        "business",
+        "candidate",
+        "education",
+        "experience",
+        "grow",
+        "hire",
+        "hiring",
+        "india",
+        "interview"
+      ],
+      "skill_overlap": 0.16666666666666666,
+      "skills_found": [
+        "communication",
+        "excel",
+        "java",
+        "leadership",
+        "python",
+        "teamwork"
+      ],
+      "skills_matched": [
+        "leadership"
+      ],
+      "skills_missing": [
+        "power bi",
+        "stakeholder management",
+        "tableau"
+      ],
+      "experience": 0.3,
+      "years_experience": 3.0,
+      "education": 0.7,
+      "education_label": "BACHELOR",
+      "stuffing_multiplier": 1.0,
+      "required_boost": 1.0,
+      "required_penalty": 0.92,
+      "required_hit": [
+        "leadership"
+      ],
+      "required_miss": [
+        "stakeholder management"
+      ],
+      "preferred_hit": [],
+      "required_coverage": 50.0,
+      "word_count": 121,
+      "length_multiplier": 0.93,
+      "final_score": 35.45,
+      "grade": "D",
+      "label": "Weak Match",
+      "filename": "resume_sneha_pillai.txt",
+      "text_preview": "SNEHA PILLAI\nTalent Acquisition Specialist\nEmail: sneha.pillai@gmail.com | Phone: +91-9567234512\nLocation: Pune, India\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nSUMMARY\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nEnthusiastic recruiter with 3 years of experience in IT staffing and recruitment...",
+      "tfidf_pct": 10.2,
+      "keyword_pct": 100.0,
+      "skill_pct": 16.7,
+      "experience_pct": 30.0,
+      "education_pct": 70.0,
+      "explanation": [
+        "\u274c Low semantic similarity to JD \u2014 TF-IDF score only 10.2%",
+        "\ud83d\udfe0 Only 50.0% required skills matched \u2014 missing: stakeholder management (\u22128% penalty)",
+        "\ud83d\udfe0 Under-experienced \u2014 3.0 yrs found, JD requires minimum 6.0 yrs",
+        "\ud83d\udfe0 Education (BACHELOR) is below JD requirement (Master)",
+        "\u2139\ufe0f  Resume length is adequate (121 words)"
+      ],
+      "rank": 5
+    },
+    {
+      "tfidf_similarity": 0.026781376941260076,
+      "keyword_match": 1.0,
+      "matched_keywords": [
+        "bachelor",
+        "bangalore",
+        "build",
+        "certification",
+        "certify",
+        "cloud",
+        "control",
+        "education",
+        "engineering",
+        "enterprise",
+        "experience",
+        "india"
+      ],
+      "skill_overlap": 0.0,
+      "skills_found": [
+        "agile",
+        "aws",
+        "css",
+        "docker",
+        "flask",
+        "git",
+        "github",
+        "html",
+        "java",
+        "javascript",
+        "jira",
+        "linux",
+        "microservices",
+        "mongodb",
+        "mysql"
+      ],
+      "skills_matched": [],
+      "skills_missing": [
+        "leadership",
+        "power bi",
+        "stakeholder management",
+        "tableau"
+      ],
+      "experience": 0.4,
+      "years_experience": 4.0,
+      "education": 0.7,
+      "education_label": "BACHELOR",
+      "stuffing_multiplier": 1.0,
+      "required_boost": 1.0,
+      "required_penalty": 0.8,
+      "required_hit": [],
+      "required_miss": [
+        "leadership",
+        "stakeholder management"
+      ],
+      "preferred_hit": [],
+      "required_coverage": 0.0,
+      "word_count": 138,
+      "length_multiplier": 0.93,
+      "final_score": 26.94,
+      "grade": "F",
+      "label": "Poor Match",
+      "filename": "resume_karthik_balaji.txt",
+      "text_preview": "KARTHIK BALAJI\nSoftware Engineer | Full Stack Developer\nEmail: karthik.balaji@gmail.com | Phone: +91-9445678901\nLinkedIn: linkedin.com/in/karthikbalaji | GitHub: github.com/karthikb\nLocation: Bangalore, India\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nSUMMARY\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500...",
+      "tfidf_pct": 2.7,
+      "keyword_pct": 100.0,
+      "skill_pct": 0.0,
+      "experience_pct": 40.0,
+      "education_pct": 70.0,
+      "explanation": [
+        "\u274c Low semantic similarity to JD \u2014 TF-IDF score only 2.7%",
+        "\u274c Critical skill gap \u2014 only 0.0% required skills found. Missing: leadership, stakeholder management (\u221220% penalty)",
+        "\ud83d\udfe0 Under-experienced \u2014 4.0 yrs found, JD requires minimum 6.0 yrs",
+        "\ud83d\udfe0 Education (BACHELOR) is below JD requirement (Master)",
+        "\u2139\ufe0f  Resume length is adequate (138 words)"
+      ],
+      "rank": 6
+    }
+  ],
+  "errors": []
+}

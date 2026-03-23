@@ -1,0 +1,4 @@
+project2/data/creditcard.csv
+venv/
+__pycache__/
+*.pyc

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FraudShield — AI Detection Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=Exo+2:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg-deep:    #060b14;
+    --bg-panel:   #0d1521;
+    --bg-card:    #111d2e;
+    --border:     #1e3a5f;
+    --accent:     #00e5ff;
+    --accent2:    #ff3d71;
+    --accent3:    #7b2fff;
+    --warn:       #ffaa00;
+    --text:       #c8d8e8;
+    --text-dim:   #5a7898;
+    --green:      #00ff9d;
+    --font-mono:  'Share Tech Mono', monospace;
+    --font-ui:    'Rajdhani', sans-serif;
+    --font-body:  'Exo 2', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated grid background */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Scanline effect */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 2px,
+      rgba(0,0,0,.08) 2px, rgba(0,0,0,.08) 4px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 36px;
+    background: rgba(13,21,33,.9);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    font-family: var(--font-ui); font-size: 1.6rem; font-weight: 700;
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(0,229,255,.5);
+    letter-spacing: 2px;
+  }
+  .logo-icon {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, var(--accent), var(--accent3));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 0 20px rgba(0,229,255,.4);
+  }
+  .logo span { color: var(--text-dim); font-weight: 300; }
+  .header-status {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: .75rem;
+    color: var(--green);
+  }
+  .pulse-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green);
+    animation: pulse 1.5s ease-in-out infinite;
+    box-shadow: 0 0 8px var(--green);
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+
+  /* ── LAYOUT ── */
+  main { position: relative; z-index: 1; padding: 28px 36px; max-width: 1400px; margin: 0 auto; }
+
+  /* ── STAT CARDS ── */
+  .stats-row {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    margin-bottom: 28px;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px;
+    position: relative; overflow: hidden;
+    animation: fadeUp .5s ease both;
+  }
+  .stat-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  }
+  .stat-card.cyan::before  { background: var(--accent); }
+  .stat-card.red::before   { background: var(--accent2); }
+  .stat-card.purple::before{ background: var(--accent3); }
+  .stat-card.green::before { background: var(--green); }
+  .stat-label {
+    font-family: var(--font-mono); font-size: .68rem;
+    color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+  .stat-value {
+    font-family: var(--font-ui); font-size: 2rem; font-weight: 700;
+    line-height: 1;
+  }
+  .stat-card.cyan   .stat-value { color: var(--accent); text-shadow: 0 0 12px rgba(0,229,255,.4); }
+  .stat-card.red    .stat-value { color: var(--accent2); text-shadow: 0 0 12px rgba(255,61,113,.4); }
+  .stat-card.purple .stat-value { color: var(--accent3); text-shadow: 0 0 12px rgba(123,47,255,.4); }
+  .stat-card.green  .stat-value { color: var(--green); text-shadow: 0 0 12px rgba(0,255,157,.4); }
+  .stat-sub { font-size: .75rem; color: var(--text-dim); margin-top: 4px; }
+
+  /* ── GRID ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1.2fr .8fr; gap: 20px; margin-bottom: 20px; }
+
+  /* ── PANEL ── */
+  .panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px;
+    animation: fadeUp .5s ease both;
+  }
+  .panel-title {
+    font-family: var(--font-ui); font-weight: 700; font-size: 1rem;
+    color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 20px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  /* ── FORM ── */
+  .form-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .field label {
+    display: block;
+    font-family: var(--font-mono); font-size: .65rem;
+    color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 5px;
+  }
+  .field input {
+    width: 100%; padding: 9px 12px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: var(--font-mono); font-size: .82rem;
+    transition: border-color .2s, box-shadow .2s;
+    outline: none;
+  }
+  .field input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(0,229,255,.15);
+  }
+  .field input::placeholder { color: var(--text-dim); }
+
+  .btn {
+    padding: 11px 28px; border: none; border-radius: 8px;
+    font-family: var(--font-ui); font-size: .95rem; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; transition: all .2s; outline: none;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), #0077aa);
+    color: #000;
+    box-shadow: 0 4px 20px rgba(0,229,255,.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(0,229,255,.5);
+  }
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-row { display: flex; gap: 12px; margin-top: 18px; align-items: center; }
+
+  /* ── RESULT BOX ── */
+  #result-box {
+    display: none;
+    margin-top: 20px; padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg-panel);
+    animation: fadeIn .4s ease;
+  }
+  #result-box.fraud  { border-color: var(--accent2); background: rgba(255,61,113,.08); }
+  #result-box.legit  { border-color: var(--green);   background: rgba(0,255,157,.06); }
+  .result-verdict {
+    font-family: var(--font-ui); font-size: 1.6rem; font-weight: 700;
+    letter-spacing: 2px; margin-bottom: 12px;
+  }
+  .result-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 14px; }
+  .result-item label {
+    font-family: var(--font-mono); font-size: .65rem;
+    color: var(--text-dim); text-transform: uppercase;
+    display: block; margin-bottom: 4px;
+  }
+  .result-item .val {
+    font-family: var(--font-ui); font-size: 1.1rem; font-weight: 700;
+  }
+
+  /* ── PROGRESS BAR ── */
+  .score-bar-wrap { margin-top: 16px; }
+  .score-bar-wrap label {
+    font-family: var(--font-mono); font-size: .65rem;
+    color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;
+  }
+  .score-bar {
+    height: 8px; background: var(--bg-deep); border-radius: 4px;
+    margin-top: 6px; overflow: hidden;
+  }
+  .score-fill {
+    height: 100%; border-radius: 4px;
+    transition: width .8s cubic-bezier(.4,0,.2,1);
+    background: linear-gradient(90deg, var(--green), var(--accent2));
+  }
+
+  /* ── PLOTS ── */
+  .plot-img {
+    width: 100%; border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  /* ── CSV SECTION ── */
+  .drop-zone {
+    border: 2px dashed var(--border);
+    border-radius: 10px; padding: 30px;
+    text-align: center; cursor: pointer;
+    transition: all .2s;
+    color: var(--text-dim);
+    font-family: var(--font-mono); font-size: .85rem;
+  }
+  .drop-zone:hover { border-color: var(--accent); color: var(--accent); }
+  .drop-zone input { display: none; }
+
+  /* ── BATCH RESULTS ── */
+  #batch-results { display: none; margin-top: 16px; }
+  .batch-stats { display: flex; gap: 20px; margin-bottom: 14px; }
+  .b-stat { text-align: center; }
+  .b-stat .num { font-family: var(--font-ui); font-size: 1.6rem; font-weight: 700; }
+  .b-stat .lbl { font-family: var(--font-mono); font-size: .65rem; color: var(--text-dim); text-transform: uppercase; }
+  table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+  th {
+    font-family: var(--font-mono); font-size: .65rem;
+    color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;
+    padding: 8px 12px; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  td { padding: 8px 12px; border-bottom: 1px solid rgba(30,58,95,.4); }
+  tr:hover td { background: rgba(0,229,255,.04); }
+  .badge {
+    padding: 3px 8px; border-radius: 4px;
+    font-family: var(--font-mono); font-size: .7rem; font-weight: 700;
+  }
+  .badge.FRAUD  { background: rgba(255,61,113,.2); color: var(--accent2); }
+  .badge.LEGIT  { background: rgba(0,255,157,.12); color: var(--green); }
+  .badge.HIGH   { background: rgba(255,61,113,.2); color: var(--accent2); }
+  .badge.MEDIUM { background: rgba(255,170,0,.15); color: var(--warn); }
+  .badge.LOW    { background: rgba(0,255,157,.1);  color: var(--green); }
+
+  /* ── LOADING ── */
+  #loading { display: none; align-items: center; gap: 10px; color: var(--accent); font-family: var(--font-mono); }
+  .spinner {
+    width: 18px; height: 18px;
+    border: 2px solid rgba(0,229,255,.2);
+    border-top-color: var(--accent);
+    border-radius: 50%; animation: spin .7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(16px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+  /* stagger */
+  .stat-card:nth-child(1){animation-delay:.05s}
+  .stat-card:nth-child(2){animation-delay:.1s}
+  .stat-card:nth-child(3){animation-delay:.15s}
+  .stat-card:nth-child(4){animation-delay:.2s}
+
+  /* ── NOT READY BANNER ── */
+  .not-ready {
+    background: rgba(255,170,0,.1); border: 1px solid var(--warn);
+    border-radius: 8px; padding: 14px 20px;
+    font-family: var(--font-mono); font-size: .82rem; color: var(--warn);
+    margin-bottom: 20px;
+  }
+
+  footer {
+    text-align: center; padding: 24px;
+    font-family: var(--font-mono); font-size: .7rem; color: var(--text-dim);
+    border-top: 1px solid var(--border); margin-top: 40px;
+  }
+
+  @media(max-width:900px){
+    .stats-row{grid-template-columns:1fr 1fr}
+    .grid-2,.grid-3{grid-template-columns:1fr}
+    .form-grid{grid-template-columns:1fr 1fr}
+    main{padding:16px}
+    header{padding:14px 16px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">🛡</div>
+    FRAUD<span>SHIELD</span>
+  </div>
+  <div class="header-status">
+    <div class="pulse-dot"></div>
+    SYSTEM ACTIVE — AI ENGINE v2.0
+  </div>
+</header>
+
+<main>
+
+  <!-- Not ready banner -->
+  {% if not stats.models_ready %}
+  <div class="not-ready">
+    ⚠ Models not trained yet. Run <code>python train_model.py</code> first, then reload this page.
+  </div>
+  {% endif %}
+
+  <!-- ── STAT CARDS ── -->
+  <div class="stats-row">
+    <div class="stat-card cyan">
+      <div class="stat-label">XGBoost AUC</div>
+      <div class="stat-value">{{ stats.xgb_auc if stats.xgb_auc != 'N/A' else '—' }}</div>
+      <div class="stat-sub">Primary model</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-label">XGBoost F1</div>
+      <div class="stat-value">{{ stats.xgb_f1 if stats.xgb_f1 != 'N/A' else '—' }}</div>
+      <div class="stat-sub">Fraud class</div>
+    </div>
+    <div class="stat-card purple">
+      <div class="stat-label">LR AUC</div>
+      <div class="stat-value">{{ stats.lr_auc if stats.lr_auc != 'N/A' else '—' }}</div>
+      <div class="stat-sub">Baseline model</div>
+    </div>
+    <div class="stat-card red">
+      <div class="stat-label">Ensemble</div>
+      <div class="stat-value">3</div>
+      <div class="stat-sub">Models active</div>
+    </div>
+  </div>
+
+  <!-- ── SINGLE TRANSACTION ── -->
+  <div class="panel" style="margin-bottom:20px">
+    <div class="panel-title">🔍 Single Transaction Analysis</div>
+
+    <div class="form-grid" id="feature-form">
+      <!-- Features V1-V10 -->
+      {% for i in range(1,11) %}
+      <div class="field">
+        <label>V{{ i }}</label>
+        <input type="number" step="any" id="V{{ i }}" placeholder="0.00" value=""/>
+      </div>
+      {% endfor %}
+      <!-- Amount & Time scaled -->
+      <div class="field">
+        <label>Amount (scaled)</label>
+        <input type="number" step="any" id="Amount_scaled" placeholder="0.00"/>
+      </div>
+      <div class="field">
+        <label>Time (scaled)</label>
+        <input type="number" step="any" id="Time_scaled" placeholder="0.00"/>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="analyzeSingle()">⚡ ANALYZE TRANSACTION</button>
+      <button class="btn btn-secondary" onclick="fillSample(true)">Load Fraud Sample</button>
+      <button class="btn btn-secondary" onclick="fillSample(false)">Load Legit Sample</button>
+      <div id="loading"><div class="spinner"></div>ANALYZING…</div>
+    </div>
+
+    <!-- Result -->
+    <div id="result-box">
+      <div class="result-verdict" id="r-verdict"></div>
+      <div class="score-bar-wrap">
+        <label>Fraud Probability Score</label>
+        <div class="score-bar"><div class="score-fill" id="score-fill"></div></div>
+      </div>
+      <div class="result-grid">
+        <div class="result-item">
+          <label>Ensemble Score</label>
+          <div class="val" id="r-ensemble"></div>
+        </div>
+        <div class="result-item">
+          <label>XGBoost Prob</label>
+          <div class="val" id="r-xgb"></div>
+        </div>
+        <div class="result-item">
+          <label>LR Prob</label>
+          <div class="val" id="r-lr"></div>
+        </div>
+        <div class="result-item">
+          <label>Anomaly Flag</label>
+          <div class="val" id="r-anomaly"></div>
+        </div>
+        <div class="result-item">
+          <label>Risk Level</label>
+          <div class="val" id="r-risk"></div>
+        </div>
+        <div class="result-item">
+          <label>Decision</label>
+          <div class="val" id="r-decision"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PLOTS + CSV ── -->
+  <div class="grid-3">
+    <!-- Plots -->
+    <div class="panel">
+      <div class="panel-title">📊 Model Analytics</div>
+      <img src="/static/plots/roc_curve.png" class="plot-img" alt="ROC Curve"
+           style="margin-bottom:14px"
+           onerror="this.style.display='none'"/>
+      <img src="/static/plots/feature_importance.png" class="plot-img" alt="Feature Importance"
+           onerror="this.style.display='none'"/>
+    </div>
+
+    <!-- Batch CSV -->
+    <div class="panel">
+      <div class="panel-title">📂 Batch CSV Prediction</div>
+      <div class="drop-zone" onclick="document.getElementById('csv-input').click()">
+        <input type="file" id="csv-input" accept=".csv" onchange="handleCSV(this)"/>
+        <div style="font-size:1.8rem;margin-bottom:8px">📁</div>
+        Click to upload CSV file<br/>
+        <span style="font-size:.7rem;color:var(--text-dim)">Columns: V1–V28, Amount_scaled, Time_scaled</span>
+      </div>
+
+      <div id="batch-results">
+        <div class="batch-stats">
+          <div class="b-stat">
+            <div class="num" id="b-total" style="color:var(--accent)">—</div>
+            <div class="lbl">Total</div>
+          </div>
+          <div class="b-stat">
+            <div class="num" id="b-fraud" style="color:var(--accent2)">—</div>
+            <div class="lbl">Fraud</div>
+          </div>
+          <div class="b-stat">
+            <div class="num" id="b-legit" style="color:var(--green)">—</div>
+            <div class="lbl">Legit</div>
+          </div>
+          <div class="b-stat">
+            <div class="num" id="b-rate" style="color:var(--warn)">—</div>
+            <div class="lbl">Fraud %</div>
+          </div>
+        </div>
+        <div style="max-height:320px;overflow-y:auto;border:1px solid var(--border);border-radius:8px">
+          <table>
+            <thead><tr><th>#</th><th>Verdict</th><th>Score</th><th>Risk</th></tr></thead>
+            <tbody id="batch-table"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  FraudShield v2.0 · XGBoost + Isolation Forest + Logistic Regression Ensemble ·
+  Built for Internship Project · Kaggle Credit Card Dataset
+</footer>
+
+<script>
+// ── Sample data ──
+const FRAUD_SAMPLE = {
+  V1:-3.04,V2:2.14,V3:-3.43,V4:2.54,V5:-2.48,
+  V6:2.54,V7:-3.09,V8:0.56,V9:-0.89,V10:-0.32,
+  Amount_scaled:2.1, Time_scaled:-0.5
+};
+const LEGIT_SAMPLE = {
+  V1:1.19,V2:0.26,V3:0.17,V4:0.45,V5:-0.06,
+  V6:-0.08,V7:-0.08,V8:0.09,V9:-0.26,V10:-0.17,
+  Amount_scaled:-0.3, Time_scaled:0.7
+};
+
+function fillSample(fraud){
+  const d = fraud ? FRAUD_SAMPLE : LEGIT_SAMPLE;
+  for(const [k,v] of Object.entries(d)){
+    const el = document.getElementById(k);
+    if(el) el.value = v;
+  }
+}
+
+async function analyzeSingle(){
+  const ids = ['V1','V2','V3','V4','V5','V6','V7','V8','V9','V10','Amount_scaled','Time_scaled'];
+  const payload = {};
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    payload[id] = el ? (parseFloat(el.value)||0) : 0;
+  });
+
+  document.getElementById('loading').style.display = 'flex';
+  document.getElementById('result-box').style.display = 'none';
+
+  try {
+    const res  = await fetch('/predict', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    showResult(data);
+  } catch(e){
+    alert('Error: ' + e.message);
+  } finally {
+    document.getElementById('loading').style.display = 'none';
+  }
+}
+
+function showResult(d){
+  const box = document.getElementById('result-box');
+  box.style.display = 'block';
+  box.className = d.is_fraud ? 'fraud' : 'legit';
+
+  document.getElementById('r-verdict').textContent   = d.verdict;
+  document.getElementById('r-verdict').style.color   = d.is_fraud ? 'var(--accent2)' : 'var(--green)';
+  document.getElementById('r-ensemble').textContent  = (d.ensemble_score*100).toFixed(1)+'%';
+  document.getElementById('r-xgb').textContent       = (d.xgb_prob*100).toFixed(1)+'%';
+  document.getElementById('r-lr').textContent        = (d.lr_prob*100).toFixed(1)+'%';
+  document.getElementById('r-anomaly').textContent   = d.anomaly_flag ? '🚨 YES' : '✅ NO';
+  document.getElementById('r-risk').textContent      = d.risk_level;
+  document.getElementById('r-decision').textContent  = d.is_fraud ? 'BLOCK' : 'ALLOW';
+
+  // Animate score bar
+  setTimeout(()=>{
+    document.getElementById('score-fill').style.width = (d.ensemble_score*100)+'%';
+  }, 50);
+}
+
+async function handleCSV(input){
+  const file = input.files[0];
+  if(!file) return;
+  const fd = new FormData();
+  fd.append('file', file);
+
+  try {
+    const res  = await fetch('/predict_csv', {method:'POST', body:fd});
+    const data = await res.json();
+    if(data.error){alert(data.error);return;}
+    showBatch(data);
+  } catch(e){ alert('Error: '+e.message); }
+}
+
+function showBatch(d){
+  document.getElementById('batch-results').style.display='block';
+  document.getElementById('b-total').textContent = d.total;
+  document.getElementById('b-fraud').textContent = d.fraud_count;
+  document.getElementById('b-legit').textContent = d.legit_count;
+  document.getElementById('b-rate').textContent  = d.fraud_rate+'%';
+
+  const tbody = document.getElementById('batch-table');
+  tbody.innerHTML = d.rows.map(r=>`
+    <tr>
+      <td style="color:var(--text-dim)">${r.row}</td>
+      <td><span class="badge ${r.verdict}">${r.verdict}</span></td>
+      <td style="font-family:var(--font-mono)">${(r.score*100).toFixed(1)}%</td>
+      <td><span class="badge ${r.risk}">${r.risk}</span></td>
+    </tr>
+  `).join('');
+}
+</script>
+</body>
+</html>
